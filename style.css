@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Lato", sans-serif;
+}
+
+form {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 300px;
+}
+
+form img {
+    width: 100%;
+}
+
+h1 {
+    color: rgb(134, 10, 10);
+}
+
+input, label, select, button {
+    margin-top: 20px;
+    padding: 8px 4px;
+    font-size: 18px;
+    border: none;
+    border-bottom: 1px solid rgb(174, 51, 51);
+}
+
+label {
+    color: rgb(134, 10, 10);
+    border-bottom: none;
+}
+
+select {
+    margin-top: 0;
+}
+
+button {
+    margin-top: 40px;
+    padding: 16px;
+    color: white;
+    background-color: rgb(255, 84, 84);
+    border: none;
+    border-radius: 10px;
+}
