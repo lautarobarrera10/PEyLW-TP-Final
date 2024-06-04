@@ -5,6 +5,7 @@
 }
 
 body {
+    padding-block: 20px;
     font-family: "Lato", sans-serif;
 }
 
@@ -37,15 +38,29 @@ label {
     border-bottom: none;
 }
 
+a {
+    color: rgb(134, 10, 10);
+    text-decoration: none;
+}
+
 select {
     margin-top: 0;
 }
 
 button {
-    margin-top: 40px;
+    margin-block: 40px 12px;
     padding: 16px;
     color: white;
     background-color: rgb(255, 84, 84);
     border: none;
     border-radius: 10px;
+}
+
+button:hover {
+    background-color: rgb(255, 55, 55);
+    cursor: pointer;
+}
+
+.register-text {
+    text-align: center;
 }
