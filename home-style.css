@@ -1,0 +1,20 @@
+body {
+    min-height: 100vh;
+}
+
+nav {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 20px;
+}
+
+.material-symbols-outlined {
+    font-size: 40px;
+}
