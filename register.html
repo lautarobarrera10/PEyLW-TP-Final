@@ -5,19 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Academia de francés</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="register.css">
 
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Iconos -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+
 </head>
 <body>
-    <form action="">
+        <form action="">
         <img src="./img/register.jpg" alt="ilustración de registro">
         <h1>Crear una cuenta</h1>
         <p>Ingresa tus datos para crear una cuenta</p>
         <input type="text" placeholder="Nombre de usuario" id="nombre-usuario">
-        <input type="password" placeholder="Contraseña" id="password">
+        <span id="nombre-usuario-error" class="error"></span>
+
+        <div class="input-pass-container" id="password-container">
+            <input type="password" placeholder="Contraseña" id="password">
+            <img id="password-visibility" src="./icons/visibility_off_24dp.png" alt=""> 
+        </div>
+        <span id="password-error" class="error">La contraseña debe tener al menos 8 caracteres.</span>
+
+        <div class="input-pass-container" id="password-confirm-container">
+            <input type="password" placeholder="Repetir contraseña" id="password-confirm">
+            <img id="password-confirm-visibility" src="./icons/visibility_off_24dp.png" alt="">
+        </div>
+        <span id="password-confirm-error" class="error">La contraseña no coincide</span>
         <label for="tipo-usuario">
             Tipo de usuario
         </label>
@@ -25,9 +43,9 @@
             <option value="estudiante">Estudiante</option>
             <option value="profesor">Profesor</option>
         </select>
-        <button type="button">Registrarme</button>
+        <button type="button" id="register-button" >Registrarme</button>
         <p class="register-text">¿Ya tienes una cuenta? <a href="./login.html">Inicia sesión</a></p>
     </form>
-    <script src="index.js"></script>
+    <script src="register.js"></script>
 </body>
 </html>
