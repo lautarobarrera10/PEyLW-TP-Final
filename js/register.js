@@ -154,10 +154,10 @@ function validarPassword(){
  */
 function togglePasswordVisibility(){
     if (!passwordVisibility.src.includes("off")){
-        passwordVisibility.src = "./icons/visibility_off_24dp.png";
+        passwordVisibility.src = "../icons/visibility_off_24dp.png";
         campoPassword.type = "password";
     } else {
-        passwordVisibility.src = "./icons/visibility_24dp.png";
+        passwordVisibility.src = "../icons/visibility_24dp.png";
         campoPassword.type = "text";
     }
 }
@@ -167,10 +167,10 @@ function togglePasswordVisibility(){
  */
 function togglePaswordConfirmVisibility(){
     if (!passwordConfirmVisibility.src.includes("off")){
-        passwordConfirmVisibility.src = "./icons/visibility_off_24dp.png";
+        passwordConfirmVisibility.src = "../icons/visibility_off_24dp.png";
         campoPasswordConfirm.type = "password";
     } else {
-        passwordConfirmVisibility.src = "./icons/visibility_24dp.png";
+        passwordConfirmVisibility.src = "../icons/visibility_24dp.png";
         campoPasswordConfirm.type = "text";
     }
 }
@@ -196,5 +196,6 @@ function registrar(){
         localStorage.setItem("usuarios", usuariosJSON);
 
         // Redirigir a pagina de registro exitoso
+        window.location.href = "./registroExitoso.html";
     }
 }
