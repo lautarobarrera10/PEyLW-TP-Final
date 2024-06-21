@@ -43,7 +43,7 @@ span#select {
     z-index: -1;
     width: 55px;
     height: 55px;
-    background-color: red;
+    background-color: rgb(134, 10, 10);
     border-radius: 50%;
     transform: translateY(-7px);
     transition: all .3s ease-in-out;
