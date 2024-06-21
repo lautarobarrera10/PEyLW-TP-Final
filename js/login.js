@@ -8,24 +8,27 @@ function login(){
     // Convertir la cadena JSON de nuevo en un array
     const usuarios = JSON.parse(usuariosJSON);
 
+    // Obtenemos los valores ingresados
     const usuarioIngresado = document.querySelector('#nombre-usuario').value;
     const password = document.querySelector('#password').value;
 
+    // Campo de error por si tenemos que mostrar un error
+    const campoError = document.querySelector("#credenciales-error");
+
+    // Variable que guarda si el usuario es valido
     let usuarioValidado = false;
 
     usuarios.forEach(usuario => {
         if (usuario["nombreUsuario"] == usuarioIngresado){
-            console.log("usuario encontrado");
             if (usuario["password"] == password){
-                console.log("La contraseña coincide");
                 usuarioValidado = true;
-            } else {
-                console.log("La contraseña no coincide")
             }
         }
     });
 
     if (usuarioValidado){
         window.location.href = "./home.html";
+    } else {
+        campoError.style.display = "block";
     }
 }
