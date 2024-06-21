@@ -5,6 +5,7 @@ if (!localStorage.getItem("usuarios")) {
         {
             nombreUsuario: "admin",
             password: "admin123",
+            tipo: "administrador"
         },
     ];
 
@@ -38,6 +39,7 @@ const passwordVisibility = document.querySelector("#password-visibility");
 const passwordConfirmVisibility = document.querySelector("#password-confirm-visibility");
 const campoUsername = document.querySelector("#nombre-usuario");
 const usernameError = document.querySelector("#nombre-usuario-error");
+const campoTipo = document.querySelector("#tipo-usuario");
 
 
 // Event Listeners
@@ -187,6 +189,7 @@ function registrar(){
         usuarios.push({
             nombreUsuario: campoUsername.value,
             password: campoPassword.value,
+            tipo: campoTipo.value
         })
 
         // Lo volvemos a convertir en JSON
