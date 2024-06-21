@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: black;
+}
+
+body {
+    font-family: "Lato", sans-serif;
+}
+
+nav {
+    width: 100%;
+    position: fixed;
+    bottom: 50px;
+}
+
+nav ul {
+    margin: 0 auto;
+    width: fit-content;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 20px;
+}
+
+.material-symbols-outlined {
+    font-size: 40px;
+    cursor: pointer;
+}
+
+nav ul li.select {
+    color: white;
+}
+
+span#select {
+    position: absolute;
+    left: -8px;
+    z-index: -1;
+    width: 55px;
+    height: 55px;
+    background-color: red;
+    border-radius: 50%;
+    transform: translateY(-7px);
+    transition: all .3s ease-in-out;
+}
