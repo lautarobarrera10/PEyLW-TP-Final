@@ -1,3 +1,8 @@
+// Si está iniciado sesión redirigir al home
+if (localStorage.getItem("sesion")){
+    window.location.href = "./home.html";
+}
+
 // Verificar si el array de usuarios ya está definido en localStorage
 if (!localStorage.getItem("usuarios")) {
     // Array con usuarios pre-definidos
