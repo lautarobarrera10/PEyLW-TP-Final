@@ -1,0 +1,23 @@
+header {
+    margin-bottom: 80px;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #140A86;
+}
+
+header .logo-container {
+    width: 150px;
+    overflow: hidden;
+}
+
+header .logo-container img {
+    width: 100%;
+}
+
+header .material-symbols-outlined {
+    color: white;
+    font-size: 60px;
+    cursor: pointer;
+}
