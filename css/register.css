@@ -25,3 +25,7 @@
     color: red;
     display: none;
 }
+
+header #menu-desplegable {
+    height: 100vh;
+}

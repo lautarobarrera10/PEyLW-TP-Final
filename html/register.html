@@ -7,9 +7,10 @@
 
     <!-- Archivos CSS -->
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/register.css">
-    <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/register.css">
+
 
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,9 +27,13 @@
         <div class="logo-container">
             <img src="../img/logo.png" alt="">
         </div>
-        <span class="material-symbols-outlined">
-            menu
-        </span>
+        <span id="burger-button" class="material-symbols-outlined">menu</span>
+        <nav id="menu-desplegable">
+            <ul>
+                <a href="./login.html"><li>Iniciar sesión</li></a>
+                <a href="./register.html"><li>Registrarme</li></a>
+            </ul>
+        </nav>
     </header>
         <form action="">
         <img src="../img/register.jpg" alt="ilustración de registro">
@@ -62,5 +67,6 @@
         © Copyright - <b>Lautaro Barrera</b>
     </footer>
     <script src="../js/register.js"></script>
+    <script src="../js/header.js"></script>
 </body>
 </html>

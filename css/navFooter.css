@@ -1,0 +1,39 @@
+#nav-footer {
+    padding-block: 20px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    border-top: 1px solid rgb(134, 10, 10);
+}
+
+#nav-footer ul {
+    margin: 0 auto;
+    width: fit-content;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 20px;
+}
+
+#nav-footer .material-symbols-outlined {
+    font-size: 40px;
+    cursor: pointer;
+}
+
+#nav-footer ul li.select {
+    color: white;
+}
+
+#nav-footer span#select {
+    position: absolute;
+    left: -8px;
+    z-index: -1;
+    width: 55px;
+    height: 55px;
+    background-color: rgb(134, 10, 10);
+    border-radius: 50%;
+    transform: translateY(-7px);
+    transition: all .3s ease-in-out;
+}
