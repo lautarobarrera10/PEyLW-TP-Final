@@ -29,3 +29,7 @@
 header #menu-desplegable {
     height: 100vh;
 }
+
+#fecha-nacimiento {
+    margin: 0;
+}

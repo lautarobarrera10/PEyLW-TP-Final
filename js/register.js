@@ -10,6 +10,7 @@ if (!localStorage.getItem("usuarios")) {
         {
             nombreUsuario: "admin",
             password: "admin123",
+            fechaNacimiento: "2024-07-24",
             tipo: "administrador"
         },
     ];
@@ -45,6 +46,9 @@ const passwordConfirmVisibility = document.querySelector("#password-confirm-visi
 const campoUsername = document.querySelector("#nombre-usuario");
 const usernameError = document.querySelector("#nombre-usuario-error");
 const campoTipo = document.querySelector("#tipo-usuario");
+const campoFechaNacimiento = document.querySelector("#fecha-nacimiento");
+const fechaNacimientoError = document.querySelector("#fecha-nacimiento-error");
+
 
 
 // Event Listeners
@@ -55,6 +59,7 @@ passwordVisibility.addEventListener("click", togglePasswordVisibility);
 passwordConfirmVisibility.addEventListener("click", togglePaswordConfirmVisibility);
 campoUsername.addEventListener("change", verificarUsername);
 registerButton.addEventListener("click", registrar);
+campoFechaNacimiento.addEventListener("change", validarFecha);
 
 /**
  * Función para verificar el nombre de usuario ingresado
@@ -183,7 +188,7 @@ function togglePaswordConfirmVisibility(){
 }
 
 function registrar(){
-    if (verificarUsername() && validarPassword() && verificarIgualdadPassword()){
+    if (verificarUsername() && validarPassword() && verificarIgualdadPassword() && validarFecha() ){
         // Recuperar la cadena JSON desde localStorage
         let usuariosJSON = localStorage.getItem("usuarios");
 
@@ -194,6 +199,7 @@ function registrar(){
         usuarios.push({
             nombreUsuario: campoUsername.value,
             password: campoPassword.value,
+            fechaNacimiento: campoFechaNacimiento.value,
             tipo: campoTipo.value
         })
 
@@ -206,4 +212,42 @@ function registrar(){
         // Redirigir a pagina de registro exitoso
         window.location.href = "./registroExitoso.html";
     }
+}
+
+function validarFecha() {
+    let respuesta = false;
+    const fechaIngresada = campoFechaNacimiento.value;
+
+    // Obtener la fecha actual
+    let currentDate = new Date();
+
+    // Restarle 18 años a la fecha actual para obtener la fecha máxima permitida
+    let fechaMaxima = new Date(currentDate);
+    fechaMaxima.setFullYear(fechaMaxima.getFullYear() - 18);
+
+    // Restarle 60 años a la fecha actual para obtener la fecha mínima permitida
+    let fechaMinima = new Date(currentDate);
+    fechaMinima.setFullYear(fechaMinima.getFullYear() - 60);
+
+    // Convertir las fechas a string en formato yyyy-mm-dd
+    function formatDate(date) {
+        let year = date.getFullYear();
+        let month = (date.getMonth() + 1).toString().padStart(2, '0');
+        let day = date.getDate().toString().padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
+    let formattedFechaMaxima = formatDate(fechaMaxima);
+    let formattedFechaMinima = formatDate(fechaMinima);
+
+    if (fechaIngresada <= formattedFechaMaxima && fechaIngresada >= formattedFechaMinima) {
+        campoFechaNacimiento.style.border = "1px solid green";
+        fechaNacimientoError.style.display = "none";
+        respuesta = true;
+    } else {
+        campoFechaNacimiento.style.border = "1px solid red";
+        fechaNacimientoError.style.display = "block";
+    }
+
+    return respuesta;
 }
