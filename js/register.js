@@ -8,6 +8,7 @@ if (!localStorage.getItem("usuarios")) {
     // Array con usuarios pre-definidos
     const usuarios = [
         {
+            email: "admin@admin.com",
             nombreUsuario: "admin",
             password: "admin123",
             fechaNacimiento: "2024-07-24",
@@ -48,6 +49,8 @@ const usernameError = document.querySelector("#nombre-usuario-error");
 const campoTipo = document.querySelector("#tipo-usuario");
 const campoFechaNacimiento = document.querySelector("#fecha-nacimiento");
 const fechaNacimientoError = document.querySelector("#fecha-nacimiento-error");
+const campoCorreoElectronico = document.querySelector("#correo-electronico");
+const correoElectronicoError = document.querySelector("#correo-electronico-error");
 
 
 
@@ -60,6 +63,143 @@ passwordConfirmVisibility.addEventListener("click", togglePaswordConfirmVisibili
 campoUsername.addEventListener("change", verificarUsername);
 registerButton.addEventListener("click", registrar);
 campoFechaNacimiento.addEventListener("change", validarFecha);
+campoCorreoElectronico.addEventListener("change", validarEmailIngresado);
+
+function validarEmailIngresado(){
+    let respuesta = false;
+    const emailIngresado = campoCorreoElectronico.value;
+    if (validarEmail(emailIngresado)){
+        campoCorreoElectronico.style.border = "1px solid green";
+        correoElectronicoError.style.display = "none";
+        respuesta = true;
+    } else {
+        campoCorreoElectronico.style.border = "1px solid red";
+        correoElectronicoError.style.display = "block";
+    }
+    return respuesta;
+}
+
+function validarEmail(email) {
+    let esValido = true;
+
+    // Verificar que el email tenga solo un '@'
+    const partes = email.split('@');
+    if (partes.length !== 2) {
+        esValido = false;
+    }
+
+    const [local, dominio] = partes;
+
+    // Verificar que haya algo antes y después del '@'
+    if (esValido && (local.length === 0 || dominio.length === 0)) {
+        esValido = false;
+    }
+
+    // Verificar que el dominio tenga al menos un punto '.'
+    const dominioPartes = dominio ? dominio.split('.') : [];
+    if (esValido && dominioPartes.length < 2) {
+        esValido = false;
+    }
+
+    // Verificar que cada parte del dominio no esté vacía
+    if (esValido) {
+        esValido = verificarPartesDominio(dominioPartes);
+    }
+
+    // Verificar que la última parte del dominio tenga al menos 2 caracteres y no contenga números ni tildes
+    if (esValido) {
+        esValido = verificarUltimaParteDominio(dominioPartes[dominioPartes.length - 1]);
+    }
+
+    // Verificar que la parte local no contenga caracteres inválidos
+    if (esValido) {
+        esValido = esParteLocalValida(local);
+    }
+
+    // Verificar que la parte del dominio (excepto la última parte) no contenga caracteres inválidos
+    if (esValido) {
+        esValido = verificarPartesDominioExceptoUltima(dominioPartes);
+    }
+
+    // Función para verificar que todas las partes del dominio no estén vacías
+    function verificarPartesDominio(dominioPartes) {
+        let esValido = true;
+        let i = 0;
+        while (i < dominioPartes.length && esValido) {
+            if (dominioPartes[i].length === 0) {
+                esValido = false;
+            }
+            i++;
+        }
+        return esValido;
+    }
+
+    // Función para verificar la última parte del dominio
+    function verificarUltimaParteDominio(ultimaParte) {
+        let esValido = true;
+        if (ultimaParte.length < 2 || !esSoloLetras(ultimaParte)) {
+            esValido = false;
+        }
+        return esValido;
+    }
+
+    // Función para verificar las partes del dominio excepto la última
+    function verificarPartesDominioExceptoUltima(dominioPartes) {
+        let esValido = true;
+        let m = 0;
+        while (m < dominioPartes.length - 1 && esValido) {
+            if (!esParteDominioValida(dominioPartes[m])) {
+                esValido = false;
+            }
+            m++;
+        }
+        return esValido;
+    }
+
+    // Función para verificar que un texto contenga solo letras
+    function esSoloLetras(texto) {
+        let esValido = true;
+        let i = 0;
+        while (i < texto.length && esValido) {
+            const char = texto[i];
+            if (char.toLowerCase() === char.toUpperCase() || 'áéíóúÁÉÍÓÚ'.includes(char)) {
+                esValido = false;
+            }
+            i++;
+        }
+        return esValido;
+    }
+
+    // Función para verificar la parte local del correo
+    function esParteLocalValida(local) {
+        let esValido = true;
+        let i = 0;
+        while (i < local.length && esValido) {
+            const char = local[i];
+            if (!(char.toLowerCase() !== char.toUpperCase() || (char >= '0' && char <= '9') || char === '.' || char === '_' || char === '-')) {
+                esValido = false;
+            }
+            i++;
+        }
+        return esValido;
+    }
+
+    // Función para verificar las partes del dominio (excepto la última)
+    function esParteDominioValida(parteDominio) {
+        let esValido = true;
+        let i = 0;
+        while (i < parteDominio.length && esValido) {
+            const char = parteDominio[i];
+            if (!(char.toLowerCase() !== char.toUpperCase() || (char >= '0' && char <= '9'))) {
+                esValido = false;
+            }
+            i++;
+        }
+        return esValido;
+    }
+
+    return esValido;
+}
 
 /**
  * Función para verificar el nombre de usuario ingresado
@@ -188,7 +328,7 @@ function togglePaswordConfirmVisibility(){
 }
 
 function registrar(){
-    if (verificarUsername() && validarPassword() && verificarIgualdadPassword() && validarFecha() ){
+    if (verificarUsername() && validarPassword() && verificarIgualdadPassword() && validarFecha() && validarEmailIngresado() ){
         // Recuperar la cadena JSON desde localStorage
         let usuariosJSON = localStorage.getItem("usuarios");
 
@@ -197,6 +337,7 @@ function registrar(){
 
         // Sumamos el usuario
         usuarios.push({
+            email: campoCorreoElectronico.value,
             nombreUsuario: campoUsername.value,
             password: campoPassword.value,
             fechaNacimiento: campoFechaNacimiento.value,
