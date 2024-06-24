@@ -1,0 +1,50 @@
+#nav-footer span#select {
+    left: 53px;
+}
+
+main {
+    width: 90%;
+    margin: 0 auto 180px;
+}
+
+#volver-atras {
+    margin-bottom: 40px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 18px;
+    color: rgb(134, 10, 10);
+    cursor: pointer;
+}
+
+#crear-curso-form {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+#crear-curso-form input, textarea, button {
+    padding: 8px;
+    margin-top: 16px;
+}
+
+#crear-curso-form textarea {
+    font-family: "Lato", sans-serif;
+}
+
+#crear-curso-form button {
+    margin-top: 40px;
+    padding-block: 16px;
+    font-size: 18px;
+    border: none;
+    background-color: rgb(134, 10, 10);
+    color: white;
+    cursor: pointer;
+}
+
+.error {
+    margin-top: 4px;
+    color: red;
+    display: none;
+}

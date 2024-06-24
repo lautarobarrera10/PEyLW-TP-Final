@@ -57,3 +57,17 @@ h2 {
     padding: 12px;
     color: rgb(134, 10, 10);
 }
+
+#crear-curso {
+    margin-top: 20px;
+    width: fit-content;
+    display: none;
+    align-items: center;
+    gap: 8px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#crear-curso span {
+    color: green;
+}

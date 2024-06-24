@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear curso</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../img/logo.png" type="png">
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+     <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/navFooter.css">
+    <link rel="stylesheet" href="../css/crear-curso.css">
+
+    <!-- Iconos -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="../img/logo.png" alt="">
+        </div>
+        <span id="burger-button" class="material-symbols-outlined">menu</span>
+        <nav id="menu-desplegable">
+            <ul>
+                <a href="./home.html"><li>Inicio</li></a>
+                <a href="./cursos.html"><li>Cursos</li></a>
+                <a href="./perfil.html"><li>Mi perfil</li></a>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div id="volver-atras">
+            <span class="material-symbols-outlined">arrow_back</span>
+            <p>Volver</p>
+        </div>
+        <h1>Crear curso</h1>
+        <form id="crear-curso-form">
+            <input type="text" placeholder="Nombre del curso" id="nombre-curso">
+            <p class="error" id="nombre-curso-error">
+                Error en el nombre del curso
+            </p>
+            <textarea id="descripcion-curso" placeholder="Descripción del curso (opcional)"></textarea>
+            <input type="number" placeholder="Nota aprobado" id="nota-aprobado">
+            <p class="error" id="nota-aprobado-error">
+                Error en la nota de aprobado
+            </p>
+            <input type="number" placeholder="Nota promoción" id="nota-promocion">
+            <p class="error" id="nota-promocion-error">
+                Error en la nota de promoción
+            </p>
+            <button>Crear curso</button>
+        </form>
+    </main>
+    <footer>
+        <nav id="nav-footer" >
+            <ul>
+                <span id="select"></span>
+                <a href="./home.html"><li><span class="material-symbols-outlined">home</span></li></a>
+                <li class="select"><span class="material-symbols-outlined">book_2</span></li>
+                <a href="./perfil.html"><li><span class="material-symbols-outlined">person</span></li></a>
+            </ul>
+        </nav>
+    </footer>
+    <script src="../js/header.js"></script>
+
+</body>
+</html>
