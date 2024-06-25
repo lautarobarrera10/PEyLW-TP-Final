@@ -42,3 +42,18 @@ function validarNotaAprobado(){
 }
 
 
+// Validar nota de promoción
+const notaPromocion = document.querySelector("#nota-promocion");
+const notaPromocionError = document.querySelector("#nota-promocion-error");
+
+notaPromocion.addEventListener("change", validarNotaPromocion);
+
+function validarNotaPromocion(){
+    if (Number(notaPromocion.value) >= 8 && Number(notaPromocion.value) <= 10) {
+        notaPromocionError.style.display = "none";
+        notaPromocion.style.border = "1px solid green";
+    } else {
+        notaPromocionError.style.display = "block";
+        notaPromocion.style.border = "1px solid red";
+    }
+}
