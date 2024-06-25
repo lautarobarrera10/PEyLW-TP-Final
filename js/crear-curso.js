@@ -23,3 +23,20 @@ function validarNombreCurso(){
         nombreCursoIngresado.style.border = "1px solid green"
     }
 }
+
+// Validar nota de aprobado
+const notaAprobado = document.querySelector("#nota-aprobado");
+const notaAprobadoError = document.querySelector("#nota-aprobado-error");
+
+notaAprobado.addEventListener("change", validarNotaAprobado);
+
+function validarNotaAprobado(){
+    if (Number.isInteger(Number(notaAprobado.value)) &&
+        notaAprobado.value > 5 && notaAprobado.value <= 10) {
+        notaAprobadoError.style.display = "none";
+        notaAprobado.style.border = "1px solid green";
+    } else {
+        notaAprobadoError.style.display = "block";
+        notaAprobado.style.border = "1px solid red";
+    }
+}

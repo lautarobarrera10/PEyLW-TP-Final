@@ -50,9 +50,9 @@
                 El nombre del curso debe tener entre 8 y 30 caracteres
             </p>
             <textarea id="descripcion-curso" placeholder="Descripción del curso (opcional)"></textarea>
-            <input type="number" placeholder="Nota aprobado" id="nota-aprobado">
+            <input type="number" placeholder="Nota aprobado" id="nota-aprobado"  min="0" max="9">
             <p class="error" id="nota-aprobado-error">
-                Error en la nota de aprobado
+                La nota de aprobado debe ser un entero entre 6 y 10
             </p>
             <input type="number" placeholder="Nota promoción" id="nota-promocion">
             <p class="error" id="nota-promocion-error">
