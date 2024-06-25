@@ -40,3 +40,5 @@ function validarNotaAprobado(){
         notaAprobado.style.border = "1px solid red";
     }
 }
+
+
