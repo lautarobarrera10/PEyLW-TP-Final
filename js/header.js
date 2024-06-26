@@ -4,7 +4,6 @@ const menuDesplegable = document.querySelector("#menu-desplegable");
 burgerButton.addEventListener("click", toggleMenu);
 
 function toggleMenu(){
-    console.log(burgerButton.textContent)
     if (burgerButton.textContent == "menu"){
         burgerButton.textContent = "menu_open";
         menuDesplegable.classList.add("show");

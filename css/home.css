@@ -14,7 +14,7 @@ body {
 }
 
 .container {
-    margin: 100px auto;
+    margin: 100px auto 200px;
     width: 90%;
     display: flex;
     flex-direction: column;
