@@ -15,7 +15,7 @@ function crearNodoCurso(objCurso){
     container.appendChild(imgContainer);
 
     const img = document.createElement("img");
-    img.src = "../img/" + objCurso.img + ".png";
+    img.src = objCurso.img;
     imgContainer.appendChild(img);
 
     const nombre = document.createElement("h3");

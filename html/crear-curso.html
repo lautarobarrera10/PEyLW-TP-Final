@@ -50,6 +50,12 @@
                 El nombre del curso debe tener entre 8 y 30 caracteres
             </p>
             <textarea id="descripcion-curso" placeholder="Descripción del curso (opcional)"></textarea>
+            <select name="nivel-curso" id="nivel-curso">
+                <option value="">Seleccionar nivel del curso</option>
+                <option value="principiante">Principiante</option>
+                <option value="intermedio">Intermedio</option>
+                <option value="avanzado">Avanzado</option>
+            </select>
             <input type="number" placeholder="Nota aprobado" id="nota-aprobado"  min="0" max="9">
             <p class="error" id="nota-aprobado-error">
                 La nota de aprobado debe ser un entero entre 4 y 10
@@ -58,6 +64,27 @@
             <p class="error" id="nota-promocion-error">
                 La nota puede ser un número decimal pero debe estar entre 8 y 10
             </p>
+            <span>Seleccionar portada</span>
+            <div class="portadas-container">
+                <div class="portada select">
+                    <img src="../img/francia.png" alt="">
+                </div>
+                <div class="portada">
+                    <img src="../img/francia2.png" alt="">
+                </div>
+                <div class="portada">
+                    <img src="../img/canada.png" alt="">
+                </div>
+                <div class="portada">
+                    <img src="../img/canada2.png" alt="">
+                </div>
+                <div class="portada">
+                    <img src="../img/belgica.png" alt="">
+                </div>
+                <div class="portada">
+                    <img src="../img/belgica2.png" alt="">
+                </div>
+            </div>
             <button type="button" id="crear-curso-button">Crear curso</button>
         </form>
     </main>

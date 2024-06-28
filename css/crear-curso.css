@@ -24,9 +24,13 @@ main {
     flex-direction: column;
 }
 
-#crear-curso-form input, textarea, button {
+#crear-curso-form input, textarea, button, select {
     padding: 8px;
     margin-top: 16px;
+}
+
+span {
+    margin-block: 16px 12px;
 }
 
 #crear-curso-form textarea {
@@ -47,4 +51,31 @@ main {
     margin-top: 4px;
     color: red;
     display: none;
+}
+
+.portadas-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.portada {
+    width: 150px;
+    cursor: pointer;
+    transition: transform .3s;
+}
+
+.portada:hover {
+    transform: scale(1.02);
+}
+
+.portada.select {
+    border: 3px solid rgb(134, 10, 10);
+    transform: scale(1.02);
+    transform-origin: left;
+} 
+
+.portada img {
+    width: 100%;
+    height: 100%;
 }

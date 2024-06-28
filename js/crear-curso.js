@@ -50,6 +50,22 @@ function validarNotaAprobado(){
     return rta;
 }
 
+// Nivel del curso
+const nivelCurso = document.querySelector("#nivel-curso");
+
+nivelCurso.addEventListener("change", validarNivelCurso);
+
+function validarNivelCurso(){
+    let rta = false;
+    if (nivelCurso.value != ""){
+        rta = true;
+        nivelCurso.style.border = "1px solid green";
+    } else {
+        nivelCurso.style.border = "1px solid red";
+    }
+    return rta;
+}
+
 
 // Validar nota de promoción
 const notaPromocion = document.querySelector("#nota-promocion");
@@ -70,6 +86,22 @@ function validarNotaPromocion(){
     return rta;
 }
 
+// Seleccionar portada
+let portadas = document.querySelectorAll(".portada");
+
+portadas.forEach(portada => {
+    portada.addEventListener("click", () => {
+        quitarSelecciones();
+        portada.classList.add("select");
+    })
+})
+
+function quitarSelecciones(){
+    portadas.forEach(portada => {
+        portada.classList.remove("select");
+    })
+}
+
 // Úlima validación al presionar el botón
 const crearCursoButton = document.querySelector("#crear-curso-button");
 
@@ -77,17 +109,21 @@ crearCursoButton.addEventListener("click", validarFormulario);
 
 function validarFormulario(){
     const nombreValidado = validarNombreCurso()
+    const nivelValidado = validarNivelCurso()
     const aprobadoValidado = validarNotaAprobado()
     const promocionValidada = validarNotaPromocion()
-    if (nombreValidado && aprobadoValidado && promocionValidada){
+    if (nombreValidado && nivelValidado && aprobadoValidado && promocionValidada){
         const coleccionCursos = JSON.parse(localStorage.getItem("cursos"));
-        const docente = JSON.parse(localStorage.getItem("sesion"))["nombreUsuario"]
+        const docente = JSON.parse(localStorage.getItem("sesion"))["nombreUsuario"];
+        console.log(document.querySelector(".portada.select").src)
         const cursoNuevo = {
                 nombre: nombreCursoIngresado.value,
                 descripcion: descripcionCurso.value,
+                img: document.querySelector(".portada.select").childNodes[1].src,
+                nivel: nivelCurso.value,
                 notaAprobado: notaAprobado.value,
                 notaPromocion: notaPromocion.value,
-                docente: docente
+                docente: docente,
         };
         coleccionCursos.push(cursoNuevo);
         localStorage.setItem("cursos", JSON.stringify(coleccionCursos));

@@ -8,7 +8,7 @@ if (!localStorage.getItem("cursos")){
         {
             nombre: "Introducción (A1)",
             descripcion: "En este nivel, los estudiantes adquieren las habilidades básicas para comunicarse en situaciones cotidianas y familiares.",
-            img: "francia",
+            img: "../img/francia.png",
             nivel: "principiante",
             notaAprobado: 4,
             notaPromocion: 8,
@@ -17,7 +17,7 @@ if (!localStorage.getItem("cursos")){
         {
             nombre: "Intermedio (B1)",
             descripcion: "Tercer nivel de competencia lingüística. Este nivel está diseñado para estudiantes que ya tienen una comprensión y uso básico del idioma y quieren mejorar su capacidad para comunicarse de manera más eficaz y fluida en una variedad de situaciones.",
-            img: "canada",
+            img: "../img/canada.png",
             nivel: "intermedio",
             notaAprobado: 4,
             notaPromocion: 8,
@@ -26,7 +26,7 @@ if (!localStorage.getItem("cursos")){
         {
             nombre: "Dominio operativo eficaz (C1)",
             descripcion: "En este nivel, los estudiantes son capaces de usar el idioma de manera flexible y eficaz para propósitos sociales, académicos y profesionales.",
-            img: "belgica",
+            img: "../img/belgica.png",
             nivel: "avanzado",
             notaAprobado: 4,
             notaPromocion: 8,
