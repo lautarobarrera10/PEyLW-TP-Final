@@ -48,12 +48,23 @@ saludo.textContent = "Hola " + nombreUsuario;
 
 
 // Seccion de explorar cursos
-cursosContainer = document.querySelector("#cursos-container");
+let cursosContainer = document.querySelector("#cursos-container");
 
 
 // Agregamos los cursos a la sección de cursos
-const cursos = obtenerCursos();
+let cursos = obtenerCursos();
 cursos.forEach(curso => {
     const nodo = crearNodoCurso(curso);
     cursosContainer.appendChild(nodo)
+});
+
+// Sección mis cursos
+let misCursosContainer = document.querySelector("#mis-cursos-container");
+
+let misCursos = obtenerMisCursos();
+console.log(misCursos)
+misCursos.forEach(curso => {
+    const nodo = crearNodoCurso(curso);
+    console.log(nodo)
+    misCursosContainer.appendChild(nodo)
 });

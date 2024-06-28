@@ -5,6 +5,13 @@ function obtenerCursos(){
     return cursos;
 }
 
+// Obtener un array de los cursos
+function obtenerMisCursos(){
+    const cursoJSON = localStorage.getItem("mis-cursos");
+    const cursos = JSON.parse(cursoJSON);
+    return cursos;
+}
+
 // Retorna un nodo de curso
 function crearNodoCurso(objCurso){
     const container = document.createElement("div");

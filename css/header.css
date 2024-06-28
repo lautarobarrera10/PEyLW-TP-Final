@@ -25,7 +25,7 @@ header .material-symbols-outlined {
 
 header #menu-desplegable {
     position: absolute;
-    z-index: 1;
+    z-index: 3;
     left: 0;
     top: 118px;
     width: 100%;

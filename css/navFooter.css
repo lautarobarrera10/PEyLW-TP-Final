@@ -2,6 +2,7 @@
     padding-block: 20px;
     width: 100%;
     position: fixed;
+    z-index: 2;
     bottom: 0;
     background-color: white;
     border-top: 1px solid rgb(134, 10, 10);
