@@ -41,6 +41,7 @@ h2 {
 }
 
 .curso {
+    position: relative;
     width: 200px;
     box-shadow: 5px 5px 10px 0px rgba(134, 10, 10, 0.75);
     border-radius: 10px;
@@ -53,4 +54,16 @@ h2 {
     text-align: center;
     padding: 12px;
     color: rgb(134, 10, 10);
+}
+
+.tomarCursoButton {
+    position: absolute;
+    z-index: 2;
+    top: 8px;
+    right: 8px;
+    color: green;
+    background-color: white;
+    border-radius: 50%;
+    font-size: 28px;
+    cursor: pointer;
 }
