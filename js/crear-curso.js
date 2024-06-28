@@ -127,5 +127,7 @@ function validarFormulario(){
         };
         coleccionCursos.push(cursoNuevo);
         localStorage.setItem("cursos", JSON.stringify(coleccionCursos));
+        document.querySelector("#crear-curso-form").textContent = "";
+        document.querySelector("h1").textContent = "Curso crea exitosamente ✅";
     }
 }
