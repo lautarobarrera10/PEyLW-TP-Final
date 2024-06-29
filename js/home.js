@@ -6,6 +6,7 @@ if (!localStorage.getItem("sesion")){
 if (!localStorage.getItem("cursos")){
     const coleccionCursos = [
         {
+            codigo: 1,
             nombre: "Introducción (A1)",
             descripcion: "En este nivel, los estudiantes adquieren las habilidades básicas para comunicarse en situaciones cotidianas y familiares.",
             img: "../img/francia.png",
@@ -15,6 +16,7 @@ if (!localStorage.getItem("cursos")){
             docente: "Dana Acevedo"
         },
         {
+            codigo: 2,
             nombre: "Intermedio (B1)",
             descripcion: "Tercer nivel de competencia lingüística. Este nivel está diseñado para estudiantes que ya tienen una comprensión y uso básico del idioma y quieren mejorar su capacidad para comunicarse de manera más eficaz y fluida en una variedad de situaciones.",
             img: "../img/canada.png",
@@ -24,6 +26,7 @@ if (!localStorage.getItem("cursos")){
             docente: "Dana Acevedo"
         },
         {
+            codigo: 3,
             nombre: "Dominio operativo eficaz (C1)",
             descripcion: "En este nivel, los estudiantes son capaces de usar el idioma de manera flexible y eficaz para propósitos sociales, académicos y profesionales.",
             img: "../img/belgica.png",
@@ -56,15 +59,4 @@ let cursos = obtenerCursos();
 cursos.forEach(curso => {
     const nodo = crearNodoCurso(curso);
     cursosContainer.appendChild(nodo)
-});
-
-// Sección mis cursos
-let misCursosContainer = document.querySelector("#mis-cursos-container");
-
-let misCursos = obtenerMisCursos();
-console.log(misCursos)
-misCursos.forEach(curso => {
-    const nodo = crearNodoCurso(curso);
-    console.log(nodo)
-    misCursosContainer.appendChild(nodo)
 });

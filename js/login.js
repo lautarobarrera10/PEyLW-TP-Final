@@ -8,9 +8,12 @@ if (!localStorage.getItem("usuarios")) {
     // Array con usuarios pre-definidos
     const usuarios = [
         {
+            email: "admin@admin.com",
             nombreUsuario: "admin",
             password: "admin123",
-            tipo: "administrador"
+            fechaNacimiento: "2024-07-24",
+            tipo: "administrador",
+            misCursos: []
         },
     ];
 
@@ -43,42 +46,27 @@ function login(){
     const campoError = document.querySelector("#credenciales-error");
 
     // Variable que guarda si el usuario es valido
-    let usuarioValidado = false;
-
-    // Variables donde vamos a guardar los datos en caso de que el inicio sea correcto
-    let nombreUsuario = "";
-    let tipoUsuario = "";
-    let passwordUsuario = "";
+    let usuarioEncontrado = null;
 
     usuarios.forEach(usuario => {
         if (usuario["nombreUsuario"] == usuarioIngresado){
             if (usuario["password"] == password){
-                usuarioValidado = true;
-                nombreUsuario = usuario["nombreUsuario"];
-                tipoUsuario = usuario["tipo"];
-                passwordUsuario = usuario["password"];
+                usuarioEncontrado = usuario;
             }
         }
     });
 
-    if (usuarioValidado){
+    if (usuarioEncontrado){
         window.location.href = "./home.html";
-        guardarSesion(nombreUsuario, passwordUsuario, tipoUsuario);
+        guardarSesion(usuarioEncontrado);
     } else {
         campoError.style.display = "block";
     }
 }
 
-function guardarSesion(nombre, password, tipo){
-    // Array con usuarios pre-definidos
-    const sesion = {
-            nombreUsuario: nombre,
-            password: password,
-            tipo: tipo
-    };
-
-    // Convertir el array en una cadena JSON
-    const sesionJSON = JSON.stringify(sesion);
+function guardarSesion(objSesion){
+    // Convertir el obj en una cadena JSON
+    const sesionJSON = JSON.stringify(objSesion);
 
     // Guardar el array en localStorage
     localStorage.setItem("sesion", sesionJSON);

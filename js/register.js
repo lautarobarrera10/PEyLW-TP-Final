@@ -12,7 +12,8 @@ if (!localStorage.getItem("usuarios")) {
             nombreUsuario: "admin",
             password: "admin123",
             fechaNacimiento: "2024-07-24",
-            tipo: "administrador"
+            tipo: "administrador",
+            misCursos: []
         },
     ];
 
@@ -341,7 +342,8 @@ function registrar(){
             nombreUsuario: campoUsername.value,
             password: campoPassword.value,
             fechaNacimiento: campoFechaNacimiento.value,
-            tipo: campoTipo.value
+            tipo: campoTipo.value,
+            misCursos: []
         })
 
         // Lo volvemos a convertir en JSON

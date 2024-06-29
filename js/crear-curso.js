@@ -117,6 +117,7 @@ function validarFormulario(){
         const docente = JSON.parse(localStorage.getItem("sesion"))["nombreUsuario"];
         console.log(document.querySelector(".portada.select").src)
         const cursoNuevo = {
+                codigo: coleccionCursos.length,
                 nombre: nombreCursoIngresado.value,
                 descripcion: descripcionCurso.value,
                 img: document.querySelector(".portada.select").childNodes[1].src,
@@ -125,9 +126,10 @@ function validarFormulario(){
                 notaPromocion: notaPromocion.value,
                 docente: docente,
         };
+        console.log(cursoNuevo)
         coleccionCursos.push(cursoNuevo);
         localStorage.setItem("cursos", JSON.stringify(coleccionCursos));
         document.querySelector("#crear-curso-form").textContent = "";
-        document.querySelector("h1").textContent = "Curso crea exitosamente ✅";
+        document.querySelector("h1").textContent = "Curso creado exitosamente ✅";
     }
 }
