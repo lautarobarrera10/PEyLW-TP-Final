@@ -117,7 +117,7 @@ function validarFormulario(){
         const docente = JSON.parse(localStorage.getItem("sesion"))["nombreUsuario"];
         console.log(document.querySelector(".portada.select").src)
         const cursoNuevo = {
-                codigo: coleccionCursos.length,
+                codigo: coleccionCursos.length + 1,
                 nombre: nombreCursoIngresado.value,
                 descripcion: descripcionCurso.value,
                 img: document.querySelector(".portada.select").childNodes[1].src,
