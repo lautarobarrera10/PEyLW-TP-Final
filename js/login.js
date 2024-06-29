@@ -12,62 +12,36 @@ if (!localStorage.getItem("usuarios")) {
             nombreUsuario: "admin",
             password: "admin123",
             fechaNacimiento: "2024-07-24",
-            tipo: "administrador",
+            tipo: "profesor",
             misCursos: []
         },
     ];
 
-    // Convertir el array en una cadena JSON
-    const usuariosJSON = JSON.stringify(usuarios);
-
-    // Guardar el array en localStorage
-    localStorage.setItem("usuarios", usuariosJSON);
+    guardarLocalStorage("usuarios", usuarios);
 }
 
-const loginButton = document.querySelector('#login-button');
+let loginButton = document.querySelector('#login-button');
 loginButton.addEventListener('click', login);
 
 function login(){
-    // Recuperar la cadena JSON desde localStorage
-    let usuariosJSON = localStorage.getItem("usuarios");
-
-    console.log(usuariosJSON)
-
-    // Convertir la cadena JSON de nuevo en un array
-    const usuarios = JSON.parse(usuariosJSON);
-
-    console.log(usuarios)
+    let usuarios = buscarLocalStorage("usuarios");
 
     // Obtenemos los valores ingresados
-    const usuarioIngresado = document.querySelector('#nombre-usuario').value;
-    const password = document.querySelector('#password').value;
+    let usuarioIngresado = document.querySelector('#nombre-usuario').value;
+    let password = document.querySelector('#password').value;
 
     // Campo de error por si tenemos que mostrar un error
-    const campoError = document.querySelector("#credenciales-error");
+    let campoError = document.querySelector("#credenciales-error");
 
-    // Variable que guarda si el usuario es valido
-    let usuarioEncontrado = null;
 
-    usuarios.forEach(usuario => {
-        if (usuario["nombreUsuario"] == usuarioIngresado){
-            if (usuario["password"] == password){
-                usuarioEncontrado = usuario;
-            }
-        }
-    });
+    // Buscamos el usuario
+    let usuarioEncontrado = usuarios.find(usuario => usuario["nombreUsuario"] == usuarioIngresado);
 
-    if (usuarioEncontrado){
+    // Validamos la contraseña 
+    if (usuarioEncontrado.password == password){
         window.location.href = "./home.html";
-        guardarSesion(usuarioEncontrado);
+        guardarLocalStorage("sesion", usuarioEncontrado)
     } else {
-        campoError.style.display = "block";
+        campoError.style.display = "block"; // Mostramos el error
     }
-}
-
-function guardarSesion(objSesion){
-    // Convertir el obj en una cadena JSON
-    const sesionJSON = JSON.stringify(objSesion);
-
-    // Guardar el array en localStorage
-    localStorage.setItem("sesion", sesionJSON);
 }
