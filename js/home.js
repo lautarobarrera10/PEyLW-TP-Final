@@ -56,7 +56,7 @@ let misCursosContainer = document.querySelector("#mis-cursos-container");
 
 
 // Agregamos los cursos a la sección de cursos
-let cursos = obtenerCursos();
+let cursos = buscarLocalStorage("cursos");
 cursos.forEach(curso => {
     const nodo = crearNodoCurso(curso);
     cursosContainer.appendChild(nodo)
