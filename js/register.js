@@ -12,28 +12,20 @@ if (!localStorage.getItem("usuarios")) {
             nombreUsuario: "admin",
             password: "admin123",
             fechaNacimiento: "2024-07-24",
-            tipo: "administrador",
+            tipo: "profesor",
             misCursos: []
         },
     ];
 
-    // Convertir el array en una cadena JSON
-    const usuariosJSON = JSON.stringify(usuarios);
-
-    // Guardar el array en localStorage
-    localStorage.setItem("usuarios", usuariosJSON);
+    guardarLocalStorage("usuarios", usuarios);
 }
-
 
 // Para evitar que puedan copiar la contraseña para pegarla en la confirmación
-window.onload = function() {
-    var myInput = document.getElementById('password');
-    myInput.oncopy = function(e) {
-      e.preventDefault();
+window.onload = () => {
+    document.querySelector("#password").oncopy = (e) => {
+        e.preventDefault();
     }
 }
-
-
 
 // Elementos del DOM
 const registerButton = document.querySelector('#register-button');
@@ -81,125 +73,33 @@ function validarEmailIngresado(){
 }
 
 function validarEmail(email) {
-    let esValido = true;
-
-    // Verificar que el email tenga solo un '@'
+    // Verificar que el email tenga solo un '@' y dividirlo en partes
     const partes = email.split('@');
-    if (partes.length !== 2) {
-        esValido = false;
-    }
+    if (partes.length !== 2) return false;
 
     const [local, dominio] = partes;
 
     // Verificar que haya algo antes y después del '@'
-    if (esValido && (local.length === 0 || dominio.length === 0)) {
-        esValido = false;
-    }
+    if (!local || !dominio) return false;
 
-    // Verificar que el dominio tenga al menos un punto '.'
-    const dominioPartes = dominio ? dominio.split('.') : [];
-    if (esValido && dominioPartes.length < 2) {
-        esValido = false;
-    }
+    // Verificar que el dominio tenga al menos un punto '.' y dividirlo en partes
+    const dominioPartes = dominio.split('.');
+    if (dominioPartes.length < 2) return false;
 
-    // Verificar que cada parte del dominio no esté vacía
-    if (esValido) {
-        esValido = verificarPartesDominio(dominioPartes);
-    }
+    // Verificar que ninguna parte del dominio esté vacía
+    if (dominioPartes.some(parte => parte.length === 0)) return false;
 
     // Verificar que la última parte del dominio tenga al menos 2 caracteres y no contenga números ni tildes
-    if (esValido) {
-        esValido = verificarUltimaParteDominio(dominioPartes[dominioPartes.length - 1]);
-    }
+    const ultimaParte = dominioPartes[dominioPartes.length - 1];
+    if (ultimaParte.length < 2 || !/^[a-zA-Z]+$/.test(ultimaParte)) return false;
 
     // Verificar que la parte local no contenga caracteres inválidos
-    if (esValido) {
-        esValido = esParteLocalValida(local);
-    }
+    if (!/^[a-zA-Z0-9._-]+$/.test(local)) return false;
 
-    // Verificar que la parte del dominio (excepto la última parte) no contenga caracteres inválidos
-    if (esValido) {
-        esValido = verificarPartesDominioExceptoUltima(dominioPartes);
-    }
+    // Verificar que las partes del dominio (excepto la última parte) no contengan caracteres inválidos
+    if (dominioPartes.slice(0, -1).some(parte => !/^[a-zA-Z0-9]+$/.test(parte))) return false;
 
-    // Función para verificar que todas las partes del dominio no estén vacías
-    function verificarPartesDominio(dominioPartes) {
-        let esValido = true;
-        let i = 0;
-        while (i < dominioPartes.length && esValido) {
-            if (dominioPartes[i].length === 0) {
-                esValido = false;
-            }
-            i++;
-        }
-        return esValido;
-    }
-
-    // Función para verificar la última parte del dominio
-    function verificarUltimaParteDominio(ultimaParte) {
-        let esValido = true;
-        if (ultimaParte.length < 2 || !esSoloLetras(ultimaParte)) {
-            esValido = false;
-        }
-        return esValido;
-    }
-
-    // Función para verificar las partes del dominio excepto la última
-    function verificarPartesDominioExceptoUltima(dominioPartes) {
-        let esValido = true;
-        let m = 0;
-        while (m < dominioPartes.length - 1 && esValido) {
-            if (!esParteDominioValida(dominioPartes[m])) {
-                esValido = false;
-            }
-            m++;
-        }
-        return esValido;
-    }
-
-    // Función para verificar que un texto contenga solo letras
-    function esSoloLetras(texto) {
-        let esValido = true;
-        let i = 0;
-        while (i < texto.length && esValido) {
-            const char = texto[i];
-            if (char.toLowerCase() === char.toUpperCase() || 'áéíóúÁÉÍÓÚ'.includes(char)) {
-                esValido = false;
-            }
-            i++;
-        }
-        return esValido;
-    }
-
-    // Función para verificar la parte local del correo
-    function esParteLocalValida(local) {
-        let esValido = true;
-        let i = 0;
-        while (i < local.length && esValido) {
-            const char = local[i];
-            if (!(char.toLowerCase() !== char.toUpperCase() || (char >= '0' && char <= '9') || char === '.' || char === '_' || char === '-')) {
-                esValido = false;
-            }
-            i++;
-        }
-        return esValido;
-    }
-
-    // Función para verificar las partes del dominio (excepto la última)
-    function esParteDominioValida(parteDominio) {
-        let esValido = true;
-        let i = 0;
-        while (i < parteDominio.length && esValido) {
-            const char = parteDominio[i];
-            if (!(char.toLowerCase() !== char.toUpperCase() || (char >= '0' && char <= '9'))) {
-                esValido = false;
-            }
-            i++;
-        }
-        return esValido;
-    }
-
-    return esValido;
+    return true;
 }
 
 /**
@@ -215,12 +115,8 @@ function verificarUsername(){
     // Cambiamos el radio del borde del input
     campoUsername.style.borderRadius = "5px";
 
-    // Recuperar la cadena JSON desde localStorage
-    const usuariosJSON = localStorage.getItem("usuarios");
-
-    // Convertir la cadena JSON de nuevo en un array
-    const usuarios = JSON.parse(usuariosJSON);
-    
+    // Todos los usuarios
+    const usuarios = buscarLocalStorage("usuarios");
 
     // Verificamos si el nombre de usuario tiene menos de 5 caracteres
     if (usuarioIngresado.length < 5){
@@ -328,35 +224,6 @@ function togglePaswordConfirmVisibility(){
     }
 }
 
-function registrar(){
-    if (verificarUsername() && validarPassword() && verificarIgualdadPassword() && validarFecha() && validarEmailIngresado() ){
-        // Recuperar la cadena JSON desde localStorage
-        let usuariosJSON = localStorage.getItem("usuarios");
-
-        // Convertir la cadena JSON de nuevo en un array
-        const usuarios = JSON.parse(usuariosJSON);
-
-        // Sumamos el usuario
-        usuarios.push({
-            email: campoCorreoElectronico.value,
-            nombreUsuario: campoUsername.value,
-            password: campoPassword.value,
-            fechaNacimiento: campoFechaNacimiento.value,
-            tipo: campoTipo.value,
-            misCursos: []
-        })
-
-        // Lo volvemos a convertir en JSON
-        usuariosJSON = JSON.stringify(usuarios);
-
-        // Lo volvemos a guardar en localstorage
-        localStorage.setItem("usuarios", usuariosJSON);
-
-        // Redirigir a pagina de registro exitoso
-        window.location.href = "./registroExitoso.html";
-    }
-}
-
 function validarFecha() {
     let respuesta = false;
     const fechaIngresada = campoFechaNacimiento.value;
@@ -393,4 +260,26 @@ function validarFecha() {
     }
 
     return respuesta;
+}
+
+function registrar(){
+    if (verificarUsername() && validarPassword() && verificarIgualdadPassword() && validarFecha() && validarEmailIngresado() ){
+        let usuarios = buscarLocalStorage("usuarios"); // Todos los usuarios
+
+        // Sumamos el usuario
+        usuarios.push({
+            email: campoCorreoElectronico.value,
+            nombreUsuario: campoUsername.value,
+            password: campoPassword.value,
+            fechaNacimiento: campoFechaNacimiento.value,
+            tipo: campoTipo.value,
+            misCursos: []
+        })
+
+        // Actualizamos el LS
+        guardarLocalStorage("usuarios", usuarios);
+
+        // Redirigir a pagina de registro exitoso
+        window.location.href = "./registroExitoso.html";
+    }
 }
