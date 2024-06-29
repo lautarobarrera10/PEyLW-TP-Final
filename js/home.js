@@ -3,6 +3,7 @@ if (!localStorage.getItem("sesion")){
     window.location.href = "./login.html";
 }
 
+// Si no hay cursos en LocalStorage creamos unos por defecto
 if (!localStorage.getItem("cursos")){
     const coleccionCursos = [
         {
@@ -36,35 +37,41 @@ if (!localStorage.getItem("cursos")){
             docente: "Dana Acevedo"
         }
     ]
-    localStorage.setItem("cursos", JSON.stringify(coleccionCursos));
+    guardarLocalStorage("cursos", coleccionCursos);
 }
 
+function imprimirSaludo(){
+    // Obtenemos el nombre del usuario
+    let sesion = buscarLocalStorage("sesion");
+    let nombreUsuario = sesion.nombreUsuario;
 
-// Obtenemos el nombre de usuario
-const sessionJSON = localStorage.getItem("sesion");
-const session = JSON.parse(sessionJSON);
-const nombreUsuario = session.nombreUsuario;
+    document.querySelector("#saludo").textContent = "Hola " + nombreUsuario;
+}
 
-const saludo = document.querySelector("#saludo");
+imprimirSaludo();
 
-saludo.textContent = "Hola " + nombreUsuario;
+function imprimirCursosHome(){
+    // Contenedores de cursos
+    let cursosContainer = document.querySelector("#cursos-container");
+    let misCursosContainer = document.querySelector("#mis-cursos-container");
 
+    // Buscamos los cursos en LocalStorage
+    let cursos = buscarLocalStorage("cursos");
+    let misCursos = buscarLocalStorage("sesion").misCursos;
 
-// Seccion de explorar cursos
-let cursosContainer = document.querySelector("#cursos-container");
-let misCursosContainer = document.querySelector("#mis-cursos-container");
+    // Recorremos todos los cursos
+    cursos.forEach(curso => {
+        // Creamos el nodo del curso
+        const nodo = crearNodoCurso(curso);
+    
+        // Si el curso está en mis cursos lo agregamos a la sección de mis cursos
+        if (misCursos.includes(curso.codigo)){
+            misCursosContainer.appendChild(nodo);
+        } else {
+            // Si no lo agregamos en la sección explorar
+            cursosContainer.appendChild(nodo)
+        }
+    });
+}
 
-
-// Agregamos los cursos a la sección de cursos
-let cursos = buscarLocalStorage("cursos");
-cursos.forEach(curso => {
-    const nodo = crearNodoCurso(curso);
-    cursosContainer.appendChild(nodo)
-
-    // Sección explorar
-    let misCursos = JSON.parse(localStorage.getItem("sesion")).misCursos
-    if (misCursos.includes(curso.codigo)){
-        misCursosContainer.appendChild(nodo)
-    }
-});
-
+imprimirCursosHome();
