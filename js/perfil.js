@@ -3,19 +3,15 @@ if (!localStorage.getItem("sesion")){
     window.location.href = "./login.html";
 }
 
-const sessionJSON = localStorage.getItem("sesion");
-const session = JSON.parse(sessionJSON);
-const nombreUsuario = session.nombreUsuario;
+function imprimirNombre(){
+    let nombreUsuario = buscarLocalStorage("sesion").nombreUsuario;
+    document.querySelector("#username").textContent = nombreUsuario;
+}
 
-const usernameDom = document.querySelector("#username");
+imprimirNombre();
 
-usernameDom.textContent = nombreUsuario;
-
-const cerrarSessionButton = document.querySelector("#cerrar-sesion");
-
-cerrarSessionButton.addEventListener("click", cerrarSession);
-
-function cerrarSession(){
+// Botón de cerrar sesión
+document.querySelector("#cerrar-sesion").addEventListener("click", () => {
     localStorage.removeItem("sesion");
     window.location.href = "./login.html";
-}
+});
