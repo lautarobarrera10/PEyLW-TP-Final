@@ -10,7 +10,7 @@ document.querySelector("#volver-atras").addEventListener("click", () => {
 
 // Cuando se cambia el nombre del curso se valida
 let nombreCursoIngresado = document.querySelector("#nombre-curso");
-nombreCursoIngresado.addEventListener("change", validarNombreCurso);
+nombreCursoIngresado.addEventListener("input", validarNombreCurso);
 
 // Nodo para mostrar error en el nombre
 let errorNombre = document.querySelector("#nombre-curso-error");
@@ -36,7 +36,7 @@ let descripcionCurso = document.querySelector("#descripcion-curso");
 let notaAprobado = document.querySelector("#nota-aprobado"); // Nota de aprobado
 let notaAprobadoError = document.querySelector("#nota-aprobado-error"); // Mensaje de error de nota de aprobado
 
-notaAprobado.addEventListener("change", validarNotaAprobado); // Cuando cambia la nota, la valdiamos
+notaAprobado.addEventListener("input", validarNotaAprobado); // Cuando cambia la nota, la valdiamos
 
 function validarNotaAprobado(){
     let rta = false; // variable de retorno
@@ -57,7 +57,7 @@ function validarNotaAprobado(){
 // Nivel del curso
 let nivelCurso = document.querySelector("#nivel-curso"); // nodo del nivel del curso
 
-nivelCurso.addEventListener("change", validarNivelCurso);
+nivelCurso.addEventListener("input", validarNivelCurso);
 
 function validarNivelCurso(){
     let rta = false; // valirable de retorno
@@ -77,7 +77,7 @@ function validarNivelCurso(){
 let notaPromocion = document.querySelector("#nota-promocion");
 let notaPromocionError = document.querySelector("#nota-promocion-error");
 
-notaPromocion.addEventListener("change", validarNotaPromocion);
+notaPromocion.addEventListener("input", validarNotaPromocion);
 
 function validarNotaPromocion(){
     let rta = false;

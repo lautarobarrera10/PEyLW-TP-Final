@@ -48,15 +48,15 @@ const correoElectronicoError = document.querySelector("#correo-electronico-error
 
 
 // Event Listeners
-campoPasswordConfirm.addEventListener("change", verificarIgualdadPassword);
-campoPassword.addEventListener("change", validarPassword);
-campoPassword.addEventListener("change", verificarIgualdadPassword);
+campoPasswordConfirm.addEventListener("input", verificarIgualdadPassword);
+campoPassword.addEventListener("input", validarPassword);
+campoPassword.addEventListener("input", verificarIgualdadPassword);
 passwordVisibility.addEventListener("click", togglePasswordVisibility);
 passwordConfirmVisibility.addEventListener("click", togglePaswordConfirmVisibility);
-campoUsername.addEventListener("change", verificarUsername);
+campoUsername.addEventListener("input", verificarUsername);
 registerButton.addEventListener("click", registrar);
-campoFechaNacimiento.addEventListener("change", validarFecha);
-campoCorreoElectronico.addEventListener("change", validarEmailIngresado);
+campoFechaNacimiento.addEventListener("input", validarFecha);
+campoCorreoElectronico.addEventListener("input", validarEmailIngresado);
 
 function validarEmailIngresado(){
     let respuesta = false;
