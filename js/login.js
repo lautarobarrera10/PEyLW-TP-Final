@@ -37,11 +37,18 @@ function login(){
     // Buscamos el usuario
     let usuarioEncontrado = usuarios.find(usuario => usuario["nombreUsuario"] == usuarioIngresado);
 
+    console.log(usuarioEncontrado);
+
     // Validamos la contraseña 
-    if (usuarioEncontrado.password == password){
-        window.location.href = "./home.html";
-        guardarLocalStorage("sesion", usuarioEncontrado)
+    if (usuarioEncontrado){
+        if (usuarioEncontrado.password == password){
+            window.location.href = "./home.html";
+            guardarLocalStorage("sesion", usuarioEncontrado)
+        } else {
+            campoError.style.display = "block"; // Mostramos el error
+        }
     } else {
         campoError.style.display = "block"; // Mostramos el error
     }
+
 }
